@@ -1,0 +1,26 @@
+.selectedbutton {
+  margin: 16px;
+  background-color: #000;
+}
+
+.selectedbutton a {
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.navbutton {
+  margin: 16px;
+}
+
+.navbutton a {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.navbutton a:hover,
+.navbutton a:focus,
+.navbutton a:active {
+  text-decoration: underline;
+}
