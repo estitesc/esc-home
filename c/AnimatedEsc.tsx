@@ -61,9 +61,9 @@ const AnimatedName: NextPage = () => {
       y = 90;
 
     ctx.beginPath();
-    ctx.ellipse(x + 5, y, radius, radius / 2, 0, 0, 2 * Math.PI);
+    ctx.ellipse(x + 5, y, radius, 3 + radius / 4, 0, 0, 2 * Math.PI);
 
-    ctx.fillStyle = "rgba(0, 0, 0, 0.2)";
+    ctx.fillStyle = `rgba(0, 0, 0, ${yPos.current[circle] / 100})`;
     ctx.fill();
   };
 
