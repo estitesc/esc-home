@@ -11,7 +11,7 @@ const letters = "esc";
 const NUM_CIRCLES = letters.length;
 
 const fixedPoints = [
-  [-70, 50],
+  [-72, 50],
   [0, 50],
   [70, 50],
 ];
