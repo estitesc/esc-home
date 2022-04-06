@@ -16,10 +16,10 @@ const Navbar: React.FC = () => {
         <AnimatedEsc />
       </div>
       <div style={{ display: "flex", flexDirection: "row" }}>
-        <NavButton label="pics" linkTo="/pics" />
-        <NavButton label="poems" linkTo="/poems" selected />
+        <NavButton label="Poem Generator" linkTo="/poemgen" selected />
+        {/* <NavButton label="poems" linkTo="/poems" selected />
         <NavButton label="techs" linkTo="/techs" />
-        <NavButton label="things" linkTo="/things" />
+        <NavButton label="things" linkTo="/things" /> */}
       </div>
     </div>
   );
