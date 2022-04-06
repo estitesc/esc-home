@@ -40,20 +40,31 @@ const AnimatedName: NextPage = () => {
       ctx.rect(0, 0, ctx.canvas.width, ctx.canvas.height);
       ctx.fill();
       for (let i = 0; i < NUM_CIRCLES; i++) {
-        drawLetter(ctx, frameCount, i);
+        drawShadow(ctx, i);
+      }
+      for (let i = 0; i < NUM_CIRCLES; i++) {
+        drawLetter(ctx, i);
       }
     },
     []
   );
 
-  const drawLetter = (
-    ctx: CanvasRenderingContext2D,
-    frameCount: number,
-    circle: number
-  ) => {
+  const drawLetter = (ctx: CanvasRenderingContext2D, circle: number) => {
     ctx.fillStyle = "#000";
     ctx.font = "22px monospace";
     ctx.fillText(letters[circle], xPos.current[circle], yPos.current[circle]);
+  };
+
+  const drawShadow = (ctx: CanvasRenderingContext2D, circle: number) => {
+    var x = xPos.current[circle],
+      radius = Math.max(6, 20 - yPos.current[circle] / 4),
+      y = 90;
+
+    ctx.beginPath();
+    ctx.ellipse(x + 5, y, radius, radius / 2, 0, 0, 2 * Math.PI);
+
+    ctx.fillStyle = "rgba(0, 0, 0, 0.2)";
+    ctx.fill();
   };
 
   const update = (frameCount: number) => {
@@ -136,6 +147,7 @@ const AnimatedName: NextPage = () => {
   }, [animFrame, draw]);
 
   const nudge = () => {
+    console.log("nudged");
     const canvas = canvasRef.current as any;
     const context = canvas?.getContext("2d");
     animFrame = 0;
