@@ -34,19 +34,65 @@ const AnimatedName: NextPage = () => {
 
   let animFrame = 0;
 
+  const drawLittleDude = React.useCallback(
+    (
+      ctx: CanvasRenderingContext2D,
+      xPos: number,
+      yPos: number,
+      frameCount: number
+    ) => {
+      ctx.fillStyle = "#000";
+      ctx.beginPath();
+      ctx.rect(xPos, yPos, 8, 8);
+      ctx.rect(xPos + 3, yPos + 7, 2, 4);
+      ctx.rect(xPos + 1, yPos + 11, 6, 10);
+      ctx.fill();
+
+      ctx.beginPath();
+      ctx.lineWidth = 1.5;
+      //arm
+      ctx.moveTo(xPos + 1, yPos + 12);
+      ctx.lineTo(xPos - 2, yPos + 18);
+      //arm
+      ctx.moveTo(xPos + 7, yPos + 12);
+      ctx.lineTo(xPos + 10, yPos + 18);
+      //leg
+      ctx.moveTo(xPos + 1, yPos + 21);
+      ctx.lineTo(xPos - 1, yPos + 25);
+      ctx.lineTo(xPos + 2 - (frameCount % 128) / 64, yPos + 29);
+      //leg
+      ctx.moveTo(xPos + 7, yPos + 21);
+      ctx.lineTo(xPos + 9, yPos + 25);
+      ctx.lineTo(xPos + 7, yPos + 29);
+      ctx.stroke();
+    },
+    []
+  );
+
   const draw = React.useCallback(
     (ctx: CanvasRenderingContext2D, frameCount: number) => {
+      //BG
       ctx.fillStyle = "#fff";
       ctx.rect(0, 0, ctx.canvas.width, ctx.canvas.height);
       ctx.fill();
-      for (let i = 0; i < NUM_CIRCLES; i++) {
-        drawShadow(ctx, i);
-      }
+
       for (let i = 0; i < NUM_CIRCLES; i++) {
         drawLetter(ctx, i);
       }
+      // Ground
+      ctx.fillStyle = "#fff";
+      ctx.beginPath();
+      ctx.rect(0, 82, 300, 100);
+      ctx.stroke();
+      ctx.fill();
+
+      drawLittleDude(ctx, 160, 63, frameCount);
+
+      for (let i = 0; i < NUM_CIRCLES; i++) {
+        drawShadow(ctx, i);
+      }
     },
-    []
+    [drawLittleDude]
   );
 
   const drawLetter = (ctx: CanvasRenderingContext2D, circle: number) => {
