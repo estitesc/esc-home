@@ -2,9 +2,11 @@ import * as React from "react";
 import type { NextPage } from "next";
 import styles from "../styles/Home.module.css";
 import Layout from "../c/Layout";
+import { poemStyles } from "../constants/poemStyles";
 
 const PoemGen: NextPage = () => {
   const [poemTitleInput, setPoemTitleInput] = React.useState("");
+  const [poemStyle, setPoemStyle] = React.useState("none");
   const [result, setResult] = React.useState("");
 
   async function onSubmit(event: any) {
@@ -15,12 +17,12 @@ const PoemGen: NextPage = () => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ animal: poemTitleInput }),
+      body: JSON.stringify({ title: poemTitleInput, style: poemStyle }),
     });
     const data = await response.json();
     console.log("data", data);
     setResult(data.result);
-    setPoemTitleInput("");
+    // setPoemTitleInput("");
   }
 
   return (
@@ -32,9 +34,17 @@ const PoemGen: NextPage = () => {
           alignItems: "center",
         }}
       >
-        <div style={{ maxWidth: 400 }}>
-          <h3>Enter the title of a poem</h3>
-          {/* <p>The GPT3 AI will write it.</p> */}
+        <div style={{ width: 350 }}>
+          <div
+            style={{
+              fontWeight: "bold",
+              fontSize: 16,
+              marginTop: 16,
+              marginBottom: 16,
+            }}
+          >
+            Enter the title of a poem
+          </div>
           <form onSubmit={onSubmit}>
             <input
               type="text"
@@ -44,6 +54,30 @@ const PoemGen: NextPage = () => {
               onChange={(e) => setPoemTitleInput(e.target.value)}
               style={{ padding: 4 }}
             />
+            <div
+              style={{
+                fontWeight: "bold",
+                fontSize: 16,
+                marginBottom: 16,
+                marginTop: 16,
+              }}
+            >
+              and choose a style (optional)
+            </div>
+            <div>
+              <select
+                onChange={(e) => setPoemStyle(e.target.value)}
+                value={poemStyle}
+              >
+                {Object.keys(poemStyles).map((key: string) => {
+                  return (
+                    <option value={key} key={key}>
+                      {poemStyles[key].name}
+                    </option>
+                  );
+                })}
+              </select>
+            </div>
             <div style={{ marginTop: 12 }}>
               <input
                 type="submit"
