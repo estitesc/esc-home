@@ -54,7 +54,7 @@ const PoemGen: NextPage = () => {
               onChange={(e) => setPoemTitleInput(e.target.value)}
               style={{ padding: 4 }}
             />
-            <div
+            {/* <div
               style={{
                 fontWeight: "bold",
                 fontSize: 16,
@@ -63,8 +63,8 @@ const PoemGen: NextPage = () => {
               }}
             >
               and choose a style (optional)
-            </div>
-            <div>
+            </div> */}
+            <div style={{ marginTop: 8 }}>
               <select
                 onChange={(e) => setPoemStyle(e.target.value)}
                 value={poemStyle}
