@@ -1,0 +1,13 @@
+.word {
+  cursor: pointer;
+}
+
+.word:hover,
+.word:focus,
+.word:active {
+  text-decoration: underline;
+}
+
+.space {
+  cursor: pointer;
+}
