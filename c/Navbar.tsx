@@ -1,8 +1,15 @@
 import * as React from "react";
 import AnimatedEsc from "./AnimatedEsc";
 import NavButton from "./NavButton";
+import useIsDesktop from "../h/useIsDesktop";
 
-const Navbar: React.FC = () => {
+interface NavbarProps {
+  selectedSection?: string;
+}
+
+const Navbar: React.FC<NavbarProps> = ({ selectedSection }) => {
+  const isDesktop = useIsDesktop();
+
   return (
     <div
       style={{
@@ -16,9 +23,17 @@ const Navbar: React.FC = () => {
         <AnimatedEsc />
       </div>
       <div style={{ display: "flex", flexDirection: "row" }}>
-        <NavButton label="Poem Generator" linkTo="/poemgen" selected />
-        {/* <NavButton label="poems" linkTo="/poems" selected />
-        <NavButton label="techs" linkTo="/techs" />
+        <NavButton
+          label={isDesktop ? "poem/generator" : "p/g"}
+          linkTo="/poemgen"
+          selected={selectedSection == "poemgen"}
+        />
+        <NavButton
+          label={isDesktop ? "little/magic/booky" : "l/m/b"}
+          linkTo="/booky"
+          selected={selectedSection == "booky"}
+        />
+        {/* <NavButton label="techs" linkTo="/techs" />
         <NavButton label="things" linkTo="/things" /> */}
       </div>
     </div>

@@ -3,7 +3,7 @@ import Layout from "../c/Layout";
 
 const Booky: NextPage = () => {
   return (
-    <Layout>
+    <Layout selectedSection="booky">
       <div
         style={{
           display: "flex",

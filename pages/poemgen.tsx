@@ -26,7 +26,7 @@ const PoemGen: NextPage = () => {
   }
 
   return (
-    <Layout>
+    <Layout selectedSection="poemgen">
       <div
         style={{
           display: "flex",

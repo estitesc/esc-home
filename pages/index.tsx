@@ -1,33 +1,38 @@
 import type { NextPage } from "next";
-import Head from "next/head";
-import Image from "next/image";
-import Navbar from "../c/Navbar";
-import styles from "../styles/Home.module.css";
+import Link from "next/link";
+import Layout from "../c/Layout";
 
 const Home: NextPage = () => {
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>escribblings</title>
-        <meta name="description" content="esc's website" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <Navbar />
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{" "}
-          <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
-      </footer>
-    </div>
+    <Layout>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
+      >
+        <div style={{ maxWidth: 400, marginTop: 24 }}>
+          <div style={{ fontWeight: "bold", margin: "12px 0 12px" }}>
+            hi there
+          </div>
+          <div style={{ marginBottom: 12 }}>
+            you have reached the personal website of evan stites-clayton.
+          </div>
+          <div style={{ marginBottom: 12 }}>
+            what you will find here is escribblings. which are the little
+            doodles and thoughts and tech makings of esc.
+          </div>
+          <div style={{ marginBottom: 12 }}>
+            just arriving? why not have a look at the{" "}
+            <span style={{ fontWeight: "bold" }}>
+              <Link href={"/booky"}>magic booky</Link>
+            </span>
+            ? it tells you what you need to hear.
+          </div>
+        </div>
+      </div>
+    </Layout>
   );
 };
 
